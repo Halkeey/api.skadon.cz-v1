@@ -1,0 +1,217 @@
+FORMAT: 1A
+HOST: http://api.skladon.cz/v1/
+
+# skladon
+
+Skadon API
+
+## Address Validation Collection [/address-validation]
+### List All Address Validation [POST]
+
++ Request (application/json)
+
+        {
+            "skladonAuth": {
+                "apiKey": "a4de2249-5dal-243v-8r99-623cc54b9616"
+            },
+            "city": "Cliffside Park", 
+            "stateCode":"NJ", 
+            "postalCode":"07010"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "code": 200,
+                "text": "valid"
+            }
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "status": "invalid",
+            "statusCode": 400
+        }   
+        
+        
+## Order Collection [/create-order]
+### List All Order [POST]
+
++ Request (application/json)
+
+        {
+            "skladonAuth": {
+                "apiKey": "a4de2249-5dal-243v-8r99-623cc54b9616"
+            },
+            "order": {
+                "shipTo": {
+                    "recipient": {
+                        "fullName": "Miloš Halecký",
+                        "street": "Chemická 955/3",
+                        "city": "Prague",
+                        "state": "CZ",
+                        "postCode": "14800",
+                        "email": "milos.halecky@gmail.com",
+                        "companyName": "",
+                        "companyId": "",
+                        "taxId": "",
+                        "phone": "+420735019429"
+                    },
+                    "billing": {
+                        "fullName": "Miloš Halecký",
+                        "street": "Chemická 955/3",
+                        "city": "Prague",
+                        "state": "CZ",
+                        "postCode": "14800",
+                        "email": "milos.halecky@gmail.com",
+                        "companyName": "",
+                        "companyId": "",
+                        "taxId": "",
+                        "phone": "+420735019429"
+                    }
+                },
+                "products": [{
+                    "productCode": "1",
+                    "count": 1
+                }, {
+                    "productCode": "2",
+                    "count": 1
+                }],
+                "discount": {
+                    "type": "PER",
+                    "value": "0"
+                },
+                "paid": 1,
+                "price": {
+                    "value":"24990",
+                    "currency":"CZK"
+                },
+                "shipMethod": "DEL",
+                "shipperName": "UPS",
+                "invoice": {
+                    "invoiceNumber":"40002017",
+                    "format":"html",
+                    "encoding": "base64",
+                    "data":"JVBERi0xLjUNJabpz8QgDTkzNCAwIG9iag08PC9MaW5lYXJpemVkIDEvTyA5MzcvSCBbIDgxNSAz"
+                }
+            }
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "code": 200,
+                "text": "success"
+            },
+            "response": {
+                "message": "order successfully created",
+                "invoiceNumber": "40002017"
+            }
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "code": 401,
+                "text": "error"
+            },
+            "response":{
+                "message": "Order number 40002017 already exists"
+            }
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "code": 402,
+                "text": "error"
+            },
+            "response": {
+                "message": "count of products with code 1,2 is less then you need or you don't have any of them stored"
+            }
+        }
+        
+        
+## Order State Collection [/order-state]
+### List All Order State [POST]
+
++ Request (application/json)
+
+        {
+            "skladonAuth": {
+                "apiKey": "a4de2249-5dal-243v-8r99-623cc54b9616"
+            },
+            "invoice": {
+                    "invoiceNumber":"40002017"
+            }
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "code": 300, # on the way
+                "text": ""
+            },
+            "tracking": {
+                "number": "tracking_number"
+            }
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "code": 301, # delivered
+                "text": ""
+            },
+            "tracking": {
+                "number": "tracking_number"
+            }
+        }        
+        
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "code": 302, # accepted
+                "text": ""
+            }
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "code": 303, # in process
+                "text": ""
+            }
+        }
+        
+## Changes in order-state Collection [/your-url]
+### List All Changes in order state [POST]
+
++ Request (application/json)
+
+        {
+            "invoice": {
+                    "invoiceNumber":"40002017"
+            },
+            "state": {
+                "code": 300, 301, 303
+            }
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "code": 200, # OK 500 # ERROR 400 # orderNumber does not exist
+                "text": "some-text"
+            }
+        }
