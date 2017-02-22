@@ -129,7 +129,8 @@ Skadon API
                 "text": "error"
             },
             "response":{
-                "message": "Order number 40002017 already exists"
+                "message": "Order already exists",
+                "invoiceNumber": "40002017"
             }
         }
 
@@ -151,6 +152,7 @@ Skadon API
 # on the way: 300
 # delivered: 301
 # accepted: 302
+# in process: 303
 
 + Request (application/json)
 
@@ -200,13 +202,16 @@ Skadon API
 
         {
             "status": {
-                "code": 303, # in process
+                "code": 303,
                 "text": ""
             }
         }
         
-## Changes in order-state Collection [/your-url]
-### List All Changes in order state [POST]
+## Changes in order state changing Collection [/your-url]
+### List All in order state changing [POST]
+# response code 200: OK
+# response code 500: ERROR
+# response code 200: ORDER-NUMBER DOES NOT EXIST
 
 + Request (application/json)
 
@@ -215,7 +220,29 @@ Skadon API
                     "invoiceNumber":"40002017"
             },
             "state": {
-                "code": 300, 301, 303
+                "code": 300,
+            }
+        }
+        
++ Request (application/json)
+
+        {
+            "invoice": {
+                    "invoiceNumber":"40002017"
+            },
+            "state": {
+                "code": 301
+            }
+        }
+        
++ Request (application/json)
+
+        {
+            "invoice": {
+                    "invoiceNumber":"40002017"
+            },
+            "state": {
+                "code": 303
             }
         }
 
@@ -223,7 +250,25 @@ Skadon API
 
         {
             "status": {
-                "code": 200, # OK 500 # ERROR 400 # orderNumber does not exist
+                "code": 200,
+                "text": "some-text"
+            }
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "code": 500,
+                "text": "some-text"
+            }
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "code": 400
                 "text": "some-text"
             }
         }
