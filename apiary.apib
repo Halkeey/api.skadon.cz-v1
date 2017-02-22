@@ -85,11 +85,20 @@ Skadon API
                 },
                 "paid": 1,
                 "price": {
-                    "value":"24990",
-                    "currency":"CZK"
+                    "ivoicePrice": {
+                        "value":"24990",
+                        "currency":"CZK"
+                    },
+                    "shippingPrice": {
+                        "value":"90",
+                        "currency":"CZK"
+                    }
                 },
-                "shipMethod": "DEL",
-                "shipperName": "UPS",
+                "shippingMethod": "DEL",
+                "shipper": {
+                    "name": "UPS",
+                    "serviceCode": "02"
+                },
                 "invoice": {
                     "invoiceNumber":"40002017",
                     "format":"html",
@@ -139,6 +148,9 @@ Skadon API
         
 ## Order State Collection [/order-state]
 ### List All Order State [POST]
+# on the way: 300
+# delivered: 301
+# accepted: 302
 
 + Request (application/json)
 
@@ -155,7 +167,7 @@ Skadon API
 
         {
             "status": {
-                "code": 300, # on the way
+                "code": 300,
                 "text": ""
             },
             "tracking": {
@@ -167,7 +179,7 @@ Skadon API
 
         {
             "status": {
-                "code": 301, # delivered
+                "code": 301,
                 "text": ""
             },
             "tracking": {
@@ -179,7 +191,7 @@ Skadon API
 
         {
             "status": {
-                "code": 302, # accepted
+                "code": 302,
                 "text": ""
             }
         }
