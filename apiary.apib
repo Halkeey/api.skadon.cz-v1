@@ -5,7 +5,7 @@ HOST: http://api.skladon.cz/v1/
 
 Skadon API
 
-## Address Validation Collection [/address-validation]
+## Address Validation Collection [/validation/address-validation]
 ### List All Address Validation [POST]
 
 + Request (application/json)
@@ -38,7 +38,7 @@ Skadon API
         }   
         
         
-## Order Collection [/create-order]
+## Order Collection [/order/create-order]
 ### List All Order [POST]
 
 + Request (application/json)
@@ -150,12 +150,12 @@ Skadon API
         }
         
         
-## Order State Collection [/order-state]
+## Order State Collection [/order/order-state]
 ### List All Order State [POST]
-# on the way: 300
-# delivered: 301
-# accepted: 302
-# in process: 303
+###### on the way: 300
+###### delivered: 301
+###### accepted: 302
+###### in process: 303
 
 + Request (application/json)
 
@@ -212,9 +212,9 @@ Skadon API
         
 ## Changes in order state changing Collection [/your-url]
 ### List All in order state changing [POST]
-# response code 200: OK
-# response code 500: ERROR
-# response code 200: ORDER-NUMBER DOES NOT EXIST
+###### response code 200: OK
+###### response code 500: ERROR
+###### response code 200: ORDER-NUMBER DOES NOT EXIST
 
 + Request (application/json)
 
@@ -274,4 +274,56 @@ Skadon API
                 "code": 400
                 "text": "some-text"
             }
+        }
+
+## Products Collection [/product/products-availability/]
+### Products [POST]
+
++ Request (application/json)
+
+        {
+            "skladonAuth": {
+                "apiKey": "a4de2249-5dal-243v-8r99-623cc54b9616"
+            },
+            "products": [
+                {"productCode": "1"},
+                {"productCode": "2"}
+            ]
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "code": 200,
+                "text": "valid"
+            },
+            "products": [
+                {
+                    "productCode": "1",
+                    "status": {
+                        "text": "available",
+                        "statusCode": 1
+                    },
+                    "count": 10
+                },
+                {
+                    "productCode": "2",
+                    "status": {
+                        "text": "unavailable",
+                        "statusCode": 0
+                    },
+                    "count": 0
+                }
+            ]
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "text": "no products found",
+                "code": 300
+            },
+            "products": []
         }
