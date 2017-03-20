@@ -306,6 +306,42 @@ Skadon API
             },
         }
         
+## Product Availability  [/product/products-availability]
+### Product Availability [POST]
+
++ Request (application/json) 
+
+        {
+            "skladonAuth":{
+                "apiKey":"a4de2249-5dal-243v-8r99-623cc54b9616"
+            },
+            "products": [
+                {
+                "productCode":"1"
+                }
+            ]
+        
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "text": "count of products",
+                "code": 200
+            },
+            "products": [
+                {
+                    "status": {
+                        "text": "available",
+                        "statusCode": 1
+                    },
+                    "productCode": "1",
+                    "count": 7
+                }
+            ]
+        }
+        
 + Response 200 (application/json)
 
         {
