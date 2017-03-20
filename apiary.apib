@@ -44,11 +44,12 @@ Skadon API
 + Request (application/json)
 
         {
-            "skladonAuth": {
-                "apiKey": "a4de2249-5dal-243v-8r99-623cc54b9616"
+            "skladonAuth":{
+                "apiKey":"a4de2249-5dal-243v-8r99-623cc54b9616"
+        
             },
-            "order": {
-                "shipTo": {
+            "order":{
+                "shipTo":{
                     "recipient": {
                         "fullName": "Miloš Halecký",
                         "street": "Chemická 955/3",
@@ -74,41 +75,44 @@ Skadon API
                         "phone": "+420735019429"
                     }
                 },
-                "products": [{
-                    "productCode": "1",
-                    "count": 1
-                }, {
-                    "productCode": "2",
-                    "count": 1
-                }],
-                "discount": {
-                    "type": "PER",
-                    "value": "0"
-                },
-                "paid": 1,
-                "price": {
-                    "invoicePrice": {
-                        "value":"24990",
-                        "currency":"CZK"
-                    },
-                    "shippingPrice": {
-                        "value":"90",
-                        "currency":"CZK"
-                    }
-                },
-                "shippingMethod": "DEL",
-                "shipper": {
-                    "name": "UPS",
-                    "serviceCode": "02"
-                },
                 "invoice": {
                     "invoiceNumber":"40002017",
                     "format":"html",
                     "encoding": "base64",
                     "data":"JVBERi0xLjUNJabpz8QgDTkzNCAwIG9iag08PC9MaW5lYXJpemVkIDEvTyA5MzcvSCBbIDgxNSAz"
-                }
+                },
+                "discount":{
+                    "type":"PER",
+                    "value":"0"
+                },
+                "paid": 1,
+                "price":{
+                    "invoicePrice":{
+                        "value":"94.00",
+                        "currency":"USD"
+                    },
+                    "shippingPrice":{
+                        "value":"4",
+                        "currency":"USD"
+                    }   
+                },
+                "shippingMethod":"DEL",
+                "shipper":{
+                    "name":"UPS",
+                    "serviceCode": "02"
+                        
+                },
+                "products":[
+                    {
+                        "productCode":"1",
+                        "count":1
+                    }
+
+                ]
             }
-        }
+        } 
+        
+
 
 + Response 200 (application/json)
 
