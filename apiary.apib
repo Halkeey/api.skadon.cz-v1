@@ -38,8 +38,8 @@ Skadon API
         }   
         
         
-## Order Collection [/order/create-order]
-### List All Order [POST]
+## Create Order Collection [/order/create-order]
+### Create Order [POST]
 
 + Request (application/json)
 
@@ -151,7 +151,7 @@ Skadon API
         
         
 ## Order State Collection [/order/order-state]
-### List All Order State [POST]
+### Order State [POST]
 ###### on the way: 300
 ###### delivered: 301
 ###### accepted: 302
@@ -276,8 +276,8 @@ Skadon API
             }
         }
 
-## Products Collection [/product/products-availability/]
-### Products [POST]
+## Order Cancellation  [/order/order-cancellation/]
+### Order Cancellation [POST]
 
 + Request (application/json)
 
@@ -285,10 +285,9 @@ Skadon API
             "skladonAuth": {
                 "apiKey": "a4de2249-5dal-243v-8r99-623cc54b9616"
             },
-            "products": [
-                {"productCode": "1"},
-                {"productCode": "2"}
-            ]
+            "invoice": {
+                    "invoiceNumber":"40002017"
+            },
         }
 
 + Response 200 (application/json)
@@ -296,26 +295,11 @@ Skadon API
         {
             "status": {
                 "code": 200,
-                "text": "valid"
+                "text": "order successfully cancelled"
             },
-            "products": [
-                {
-                    "productCode": "1",
-                    "status": {
-                        "text": "available",
-                        "statusCode": 1
-                    },
-                    "count": 10
-                },
-                {
-                    "productCode": "2",
-                    "status": {
-                        "text": "unavailable",
-                        "statusCode": 0
-                    },
-                    "count": 0
-                }
-            ]
+            "invoice": {
+                    "invoiceNumber":"40002017"
+            },
         }
         
 + Response 200 (application/json)
