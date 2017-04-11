@@ -99,7 +99,7 @@ Skadon API
                 "shippingMethod":"DEL",
                 "shipper":{
                     "name":"UPS",
-                    "serviceCode": "02"
+                    "serviceCode": "65"
                         
                 },
                 "products":[
@@ -160,6 +160,11 @@ Skadon API
 ###### delivered: 301
 ###### accepted: 302
 ###### in process: 303
+###### not delivered: 304
+###### lost: 305
+###### refunded: 306
+###### canceled: 307
+
 
 + Request (application/json)
 
@@ -227,7 +232,7 @@ Skadon API
                     "invoiceNumber":"40002017"
             },
             "state": {
-                "code": 300,
+                "code": 300
             }
         }
         
