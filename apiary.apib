@@ -52,31 +52,36 @@ Skadon API
                 "shipTo":{
                     "recipient": {
                         "fullName": "Miloš Halecký",
+                        "attentionName": "Miloš Halecký",
                         "street": "Chemická 955/3",
                         "city": "Prague",
-                        "state": "CZ",
+                        "countryCode": "CZ",
+                        "provinceCode": "CZ",
                         "postCode": "14800",
                         "email": "milos.halecky@gmail.com",
                         "companyName": "",
                         "companyId": "",
                         "taxId": "",
-                        "phone": "+420735019429"
+                        "phone": "00420735019429"
                     },
                     "billing": {
                         "fullName": "Miloš Halecký",
+                        "attentionName": "Miloš Halecký",
                         "street": "Chemická 955/3",
                         "city": "Prague",
-                        "state": "CZ",
+                        "countryCode": "CZ",
+                        "provinceCode": "CZ",
                         "postCode": "14800",
                         "email": "milos.halecky@gmail.com",
                         "companyName": "",
                         "companyId": "",
                         "taxId": "",
-                        "phone": "+420735019429"
+                        "phone": "00420735019429"
                     }
                 },
                 "invoice": {
                     "invoiceNumber":"40002017",
+                    "invoiceDate":"YYYYMMDD",
                     "format":"html",
                     "encoding": "base64",
                     "data":"JVBERi0xLjUNJabpz8QgDTkzNCAwIG9iag08PC9MaW5lYXJpemVkIDEvTyA5MzcvSCBbIDgxNSAz"
@@ -106,6 +111,8 @@ Skadon API
                     {
                         "productCode":"1",
                         "count":1
+                        "productPrice":"22"
+                        "productCurrency":"USD"
                     }
 
                 ]
@@ -219,45 +226,15 @@ Skadon API
             }
         }
         
-## Changes in order state changing Collection [/your-url]
-### List All in order state changing [POST]
+## Changes in order state changing Collection [/your-url/{invoiceNumber}]
+### List All in order state changing [GET]
 ###### response code 200: OK
 ###### response code 500: ERROR
-###### response code 200: ORDER-NUMBER DOES NOT EXIST
+###### response code 400: ORDER-NUMBER DOES NOT EXIST
 
-+ Request (application/json)
-
-        {
-            "invoice": {
-                    "invoiceNumber":"40002017"
-            },
-            "state": {
-                "code": 300
-            }
-        }
++ Parameters
+    + invoiceNumber (number) - Order Number
         
-+ Request (application/json)
-
-        {
-            "invoice": {
-                    "invoiceNumber":"40002017"
-            },
-            "state": {
-                "code": 301
-            }
-        }
-        
-+ Request (application/json)
-
-        {
-            "invoice": {
-                    "invoiceNumber":"40002017"
-            },
-            "state": {
-                "code": 303
-            }
-        }
-
 + Response 200 (application/json)
 
         {
@@ -308,8 +285,20 @@ Skadon API
             },
             "invoice": {
                     "invoiceNumber":"40002017"
-            },
+            }
         }
+        
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "code": 400,
+                "text": "cannot cancel order, reasons: no order found, order was cancelled yet or order is on the way to client"
+            },
+            "invoice": {
+                    "invoiceNumber":"40002017"
+            }
+        }        
         
 ## Product Availability  [/product/products-availability]
 ### Product Availability [POST]
