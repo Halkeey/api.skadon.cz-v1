@@ -274,6 +274,8 @@ Skadon API
 
 ## Order Cancellation  [/order/order-cancellation/]
 ### Order Cancellation [POST]
+######  response code 200: order successfully cancelled
+######  response code 400: cannot cancel order, reasons: no order found, order was cancelled yet or order is on the way to client
 
 + Request (application/json)
 
@@ -312,6 +314,8 @@ Skadon API
         
 ## Product Availability  [/product/products-availability]
 ### Product Availability [POST]
+######  response code 200: product is available, showen count of stored product
+######  response code 300: products not founddescripton
 
 + Request (application/json) 
 
