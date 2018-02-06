@@ -6,7 +6,9 @@ HOST: https://api.skladon.cz/v1/
 Skadon API
 
 ## Address Validation Collection [/validation/address-validation]
-### List All Address Validation [POST]
+### List All Address Validation (only for UPS!) [POST]
+###### status code 200: valid
+###### status code 400: invalid
 
 + Request (application/json)
 
@@ -40,6 +42,8 @@ Skadon API
         
 ## Create Order Collection [/order/create-order]
 ### Create Order [POST]
+###### status code 200: order successfully created
+###### status code 401: order already exists
 
 + Request (application/json)
 
@@ -173,14 +177,14 @@ Skadon API
         
 ## Order State Collection [/order/order-state]
 ### Order State [POST]
-###### on the way: 300
-###### delivered: 301
-###### accepted: 302
-###### in process: 303
-###### not delivered: 304
-###### lost: 305
-###### refunded: 306
-###### canceled: 307
+###### status code 300: on the way 
+###### status code 301: delivered
+###### status code 302: accepted
+###### status code 303: in process
+###### status code 304: not delivered
+###### status code 305: lost
+###### status code 306: refunded
+###### status code 307: canceled
 
 
 + Request (application/json)
@@ -238,9 +242,9 @@ Skadon API
         
 ## Changes in order state changing Collection [/your-url/{orderID}]
 ### List All in order state changing [GET]
-###### response code 200: OK
-###### response code 500: ERROR
-###### response code 400: ORDER-NUMBER DOES NOT EXIST
+###### status code 200: OK
+###### status code 500: ERROR
+###### status code 400: ORDER-NUMBER DOES NOT EXIST
 
 + Parameters
     + orderID (number) - Order ID
@@ -274,8 +278,8 @@ Skadon API
 
 ## Order Cancellation  [/order/order-cancellation/]
 ### Order Cancellation [POST]
-######  response code 200: order successfully cancelled
-######  response code 400: cannot cancel order, reasons: no order found, order was cancelled yet or order is on the way to client
+######  status code 200: order successfully cancelled
+######  status code 400: cannot cancel order, reasons: no order found, order was cancelled yet or order is on the way to client
 
 + Request (application/json)
 
@@ -314,8 +318,8 @@ Skadon API
         
 ## Product Availability  [/product/products-availability]
 ### Product Availability [POST]
-######  response code 200: product is available, showen count of stored product
-######  response code 300: products not founddescripton
+######  status code 200: product is available, showen count of stored product
+######  status code 300: products not founddescripton
 
 + Request (application/json) 
 
@@ -325,7 +329,7 @@ Skadon API
             },
             "products": [
                 {
-                "productCode":"1"
+                "productCode":"1
                 }
             ]
         
