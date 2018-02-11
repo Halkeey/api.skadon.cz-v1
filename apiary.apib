@@ -4,6 +4,9 @@ HOST: https://api.skladon.cz/v1/
 # skladon
 
 Skadon API
+Production API url: https://api.skladon.cz/v1/
+Test API url: https://test-api.skladon.cz/v1/
+
 
 ## Address Validation Collection [/validation/address-validation]
 ### List All Address Validation (only for UPS - USA addresses!) [POST]
@@ -45,6 +48,69 @@ Skadon API
 ###### status code 200: order successfully created
 ###### status code 401: order already exists
 
+###### Object properties: 
+- orderId: 255 (number, required) - The unique identifier for a order
+- message: "Extra stickers ..." (string, required) - Order message for stock-keeper or just left empty string
+
+- shipTo: {} (object, required)
+- recipient: {} (object, required)
+- recipient: {} (object, required)
+- fullName: Miloš Halecký (string, required) - Person name and surname
+- attentionName: Miloš Halecký (string, required) - Person Attention name and surname
+- address: {} (object, required)
+- street: Chemická 955/3 (string, required) - Street
+- additionalInformation: second floor (string, reguired) - Additional information or empty string
+- city: Prague (string, required) - City name
+- countryCode: CZ (string, required) - country code
+- provinceCode: CZ (string, required) - province code
+- postCode: 14800 (string, required) - postal code 
+- email: milos.halecky@gmail.com (string, required) - email address
+- companyName: "Company name" (string, required) - company name or empty string
+- companyId: "12345678" (string, required) - company id or empty string
+- taxId: "12345678" (string, required) - company tax id or empty string
+- phone: "00420123123123" (string, required) - phone number in 14 digits format
+
+- invoice: {} (object, optional)
+- invoice.invoiceNumber: 40002017 (string, required) - invoice number
+- invoice.invoiceDate: 20171231 (string, required) - invoice date format: YYYYMMDD
+- invoice.format: pdf (string, required) - invoice format or empty string
+- invoice.encoding: base64 (string, required) - invoice data encoding or empty string
+- invoice.data: JVBERi0xLjUNJabpz8QgDTkzNCAwIG9iag08PC9... (string, required) - invoice data or empty string
+
+- discount: {} (object, required)
+- discount.type: PER (string, required) - type of discount, PER = percentage
+- discount.value: 0 (integer, required) - value of discount
+
+- paid: 1 (integer, required) - 1 = paid, 0 = cash on delivery
+
+- price: {} (object, required)
+
+- price.invoicePrice: {} (object, required)
+- price.invoicePrice.value: 50 (integer, required) - ivoice price value
+- price.invoicePrice.currency: USD (string, required) - invoice price currency 
+
+- price.shippingPrice: {} (object, required)
+- price.shippingPrice.value: 4.00 (number, required) -  shipping price
+- price.shippingPrice.currency: USD (string, required) - shipping price currency 
+
+- price.cashOnDelivery: {} (object, optional)
+- price.cashOnDelivery.value: 4.00 (number, required) -  shipping price
+- price.cashOnDelivery.currency: USD (string, required) - shipping price currency 
+- price.cashOnDelivery.refNumber: variabilny symbol (string, required) - reference number for bank
+
+- shippingMethod: DEL (string, required) -  shipping method: DEL = Delivery, PER = Personally
+
+- shipper: {} (object, required)
+- shipper.name: UPS (string, required) - shipper name according table
+- shipper.serviceCode: UPSES (string, required) - shipper service code according table
+
+- products: {} (array, required)
+- product.productCode: 1 (string, requried) - The unique identifier, code of product
+- product.count: 1 (integer, required) - Count of same products
+- product.productPrice: 22 (number, required) - price of one certain product
+- product.productCurrency: USD (string, required) - product currency
+
+
 + Request (application/json)
 
         {
@@ -71,7 +137,7 @@ Skadon API
                         "companyName": "",
                         "companyId": "",
                         "taxId": "",
-                        "phone": "00420735019429"
+                        "phone": "00420123123123"
                     },
                     "billing": {
                         "fullName": "Miloš Halecký",
@@ -106,11 +172,11 @@ Skadon API
                         "currency":"USD"
                     },
                     "shippingPrice":{
-                        "value":"4",
+                        "value":"4.00",
                         "currency":"USD"
                     },
                     "cashOnDelivery":{
-                        "value":"4",
+                        "value":"4.00",
                         "currency":"USD",
                         "refNumber":"variabilny symbol"
                     }
