@@ -77,7 +77,7 @@ Test API url: https://test-api.skladon.cz/v1/
 - invoice.encoding: base64 (string, required) - invoice data encoding or empty string
 - invoice.data: JVBERi0xLjUNJabpz8QgDTkzNCAwIG9iag08PC9... (string, required) - invoice data or empty string
 
-- discount: {} (object, required)
+- discount: {} (object, required) - if skladon should provide discount, it has to be discussed otherwise set 0 to value
 - discount.type: PER (string, required) - type of discount, PER = percentage
 - discount.value: 0 (integer, required) - value of discount
 
@@ -93,9 +93,9 @@ Test API url: https://test-api.skladon.cz/v1/
 - price.shippingPrice.value: 4.00 (number, required) -  shipping price
 - price.shippingPrice.currency: USD (string, required) - shipping price currency 
 
-- price.cashOnDelivery: {} (object, optional)
-- price.cashOnDelivery.value: 4.00 (number, required) -  shipping price
-- price.cashOnDelivery.currency: USD (string, required) - shipping price currency 
+- price.cashOnDelivery: {} (object, optional) - COD Cash On Delivery
+- price.cashOnDelivery.value: 4.00 (number, required) -  COD price
+- price.cashOnDelivery.currency: USD (string, required) - COD price currency 
 - price.cashOnDelivery.refNumber: variabilny symbol (string, required) - reference number for bank
 
 - shippingMethod: DEL (string, required) -  shipping method: DEL = Delivery, PER = Personally
@@ -108,7 +108,7 @@ Test API url: https://test-api.skladon.cz/v1/
 - product.productCode: 1 (string, requried) - The unique identifier, code of product
 - product.count: 1 (integer, required) - Count of same products
 - product.productPrice: 22 (number, required) - price of one certain product
-- product.productCurrency: USD (string, required) - product currency
+- product.productCurrency: USD (string, required) - product price currencyta
 
 
 + Request (application/json)
