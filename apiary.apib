@@ -168,15 +168,15 @@ Test API url: https://test-api.skladon.cz/v1/
                 "paid": 1,
                 "price":{
                     "invoicePrice":{
-                        "value":"94.00",
-                        "currency":"USD"
+                        "value":"840.00",
+                        "currency":"CZK"
                     },
                     "shippingPrice":{
-                        "value":"4.00",
-                        "currency":"USD"
+                        "value":"40.00",
+                        "currency":"CZK"
                     },
                     "cashOnDelivery":{
-                        "value":"4.00",
+                        "value":"840.00",
                         "currency":"USD",
                         "refNumber":"variabilny symbol"
                     }
@@ -375,7 +375,7 @@ Test API url: https://test-api.skladon.cz/v1/
         {
             "status": {
                 "code": 400,
-                "text": "cannot cancel order, reasons: no order found, order was cancelled yet or order is on the way to client"
+                "text": "cannot cancel order, reasons: no order found, order has been cancelled or order is already packaged"
             },
             "invoice": {
                     "invoiceNumber":"40002017"
