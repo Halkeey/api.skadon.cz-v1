@@ -47,14 +47,16 @@ Test API url: https://test-api.skladon.cz/v1/
 ### Create Order [POST]
 ###### status code 200: order successfully created
 ###### status code 401: order already exists
+###### status code 402: number of products is less then you need or you don't have any of them stored
+###### Order is validated. 
 
 ###### Object properties: 
-- orderId: 255 (number, required) - The unique identifier for a order
+- orderId: 255 (number, required) - The unique identifier for the order
 - message: "Extra stickers ..." (string, required) - Order message for stock-keeper or just left empty string
 
 - shipTo: {} (object, required)
 - recipient: {} (object, required)
-- recipient: {} (object, required)
+- billing: {} (object, required)
 - fullName: Miloš Halecký (string, required) - Person name and surname
 - attentionName: Miloš Halecký (string, required) - Person Attention name and surname
 - address: {} (object, required)
@@ -98,11 +100,11 @@ Test API url: https://test-api.skladon.cz/v1/
 - price.cashOnDelivery.currency: USD (string, required) - COD price currency 
 - price.cashOnDelivery.refNumber: variabilny symbol (string, required) - reference number for bank
 
-- shippingMethod: DEL (string, required) -  shipping method: DEL = Delivery, PER = Personally
+- shippingMethod: DEL (string, required) -  shipping method: DEL = Delivery, PER = Personally. Available = DEL, PER
 
 - shipper: {} (object, required)
-- shipper.name: UPS (string, required) - shipper name according table
-- shipper.serviceCode: UPSES (string, required) - shipper service code according table
+- shipper.name: UPS (string, required) - shipper name according table. Available = UPS, CP of GLS
+- shipper.serviceCode: UPSES (string, required) - shipper service code according table. Available = UPSES, CPDR, CPDRCOD, CPNP, CPNPCOD, RRCZ, RRCZCOD, RREU, RRWR, GLSCZ, GLSCZCOD, GLSEU, GLSEUCOD, TGCZ, TGCZCOD, TGEU or TGEUCOD
 
 - products: {} (array, required)
 - product.productCode: 1 (string, requried) - The unique identifier, code of product
@@ -165,7 +167,7 @@ Test API url: https://test-api.skladon.cz/v1/
                     "type":"PER",
                     "value":"0"
                 },
-                "paid": 1,
+                "paid": 0,
                 "price":{
                     "invoicePrice":{
                         "value":"840.00",
@@ -235,8 +237,108 @@ Test API url: https://test-api.skladon.cz/v1/
                 "text": "error"
             },
             "response": {
-                "message": "count of products is less then you need or you don't have any of them stored",
+                "message": "number of products is less then you need or you don't have any of them stored",
                 "products": [1,2]
+            }
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "name": {
+                "code": 403,
+                "text": "ValidationError"
+            },
+            "response": {
+                "details": [
+                    {
+                        "message": "\"fullName\" is required",
+                        "path": "order.shipTo.recipient.fullName",
+                        "type": "any.required",
+                        "context": {
+                            "key": "fullName"
+                        }
+                    }
+                ],
+                "body": {
+                    "skladonAuth": "automatically hidden",
+                    "order": {
+                        "orderId": "255",
+                        "message": "message text",
+                        "shipTo": {
+                            "recipient": {
+                                "attentionName": "Miloš Halecký",
+                                "address": {
+                                    "street": "Chemická 955/3",
+                                    "additionalInformation": "second floor"
+                                },
+                                "city": "Prague",
+                                "countryCode": "CZ",
+                                "provinceCode": "",
+                                "postCode": "14800",
+                                "email": "milos.halecky@gmail.com",
+                                "companyName": "",
+                                "companyId": "",
+                                "taxId": "",
+                                "phone": "00420123123123"
+                            },
+                            "billing": {
+                                "fullName": "Miloš Halecký",
+                                "attentionName": "Miloš Halecký",
+                                "street": "Chemická 955/3",
+                                "city": "Prague",
+                                "countryCode": "CZ",
+                                "provinceCode": "",
+                                "postCode": "14800",
+                                "email": "milos.halecky@gmail.com",
+                                "companyName": "",
+                                "companyId": "",
+                                "taxId": "",
+                                "phone": "00420123123123"
+                            }
+                        },
+                        "invoice": {
+                            "invoiceNumber":"40002017",
+                            "invoiceDate":"20171231",
+                            "format":"pdf",
+                            "encoding": "base64",
+                            "data":"JVBERi0xLjUNJabpz8QgDTkzNCAwIG9iag08PC9MaW5lYXJpemVkIDEvTyA5MzcvSCBbIDgxNSAz"
+                        },
+                        "discount": {
+                            "type": "PER",
+                            "value": 0
+                        },
+                        "paid": 0,
+                        "price":{
+                            "invoicePrice":{
+                                "value":"840.00",
+                                "currency":"CZK"
+                            },
+                            "shippingPrice":{
+                                "value":"40.00",
+                                "currency":"CZK"
+                            },
+                            "cashOnDelivery":{
+                                "value":"840.00",
+                                "currency":"USD",
+                                "refNumber":"variabilny symbol"
+                            }
+                        },
+                        "shippingMethod": "DEL",
+                        "shipper": {
+                            "name": "UPS",
+                            "serviceCode": "UPSES"
+                        },
+                        "products": [
+                            {
+                                "productCode":"1",
+                                "count":1,
+                                "productPrice":"22",
+                                "productCurrency":"USD"
+                            }
+                        ]
+                    }
+                }
             }
         }
         
