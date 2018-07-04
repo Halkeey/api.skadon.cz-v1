@@ -53,64 +53,71 @@ Test API url: https://test-api.skladon.cz/v1/
 ###### Object properties: 
 - orderId: 255 (number, required) - The unique identifier for the order
 - message: "Extra stickers ..." (string, required) - Order message for stock-keeper or just left empty string
-
 - shipTo: {} (object, required)
-- recipient: {} (object, required)
-- billing: {} (object, required)
-- fullName: Miloš Halecký (string, required) - Person name and surname
-- attentionName: Miloš Halecký (string, required) - Person Attention name and surname
-- address: {} (object, required)
-- street: Chemická 955/3 (string, required) - Street
-- additionalInformation: second floor (string, reguired) - Additional information or empty string
-- city: Prague (string, required) - City name
-- countryCode: CZ (string, required) - country code
-- provinceCode: CZ (string, required) - province code
-- postCode: 14800 (string, required) - postal code 
-- email: milos.halecky@gmail.com (string, required) - email address
-- companyName: "Company name" (string, required) - company name or empty string
-- companyId: "12345678" (string, required) - company id or empty string
-- taxId: "12345678" (string, required) - company tax id or empty string
-- phone: "00420123123123" (string, required) - phone number in 14 digits format
-
+    - recipient: {} (object, required)
+        - fullName: Miloš Halecký (string, required) - Person name and surname
+        - attentionName: Miloš Halecký (string, required) - Person Attention name and surname
+        - address: {} (object, required)
+            - street: Chemická 955/3 (string, required) - Street
+            - additionalInformation: second floor (string, reguired) - Additional information or empty string
+        - city: Prague (string, required) - City name
+        - countryCode: CZ (string, required) - country code
+        - provinceCode: CZ (string, required) - province code
+        - postCode: 14800 (string, required) - postal code 
+        - email: milos.halecky@gmail.com (string, required) - email address
+        - companyName: "Company name" (string, required) - company name or empty string
+        - companyId: "12345678" (string, required) - company id or empty string
+        - taxId: "12345678" (string, required) - company tax id or empty string
+        - phone: "00420123123123" (string, required) - phone number in 14 digits format
+    - billing: {} (object, required)
+        - fullName: Miloš Halecký (string, required) - Person name and surname
+        - attentionName: Miloš Halecký (string, required) - Person Attention name and surname
+        - street: Chemická 955/3 (string, required) - Street
+        - city: Prague (string, required) - City name
+        - countryCode: CZ (string, required) - country code
+        - provinceCode: CZ (string, required) - province code
+        - postCode: 14800 (string, required) - postal code 
+        - email: milos.halecky@gmail.com (string, required) - email address
+        - companyName: "Company name" (string, required) - company name or empty string
+        - companyId: "12345678" (string, required) - company id or empty string
+        - taxId: "12345678" (string, required) - company tax id or empty string
+        - phone: "00420123123123" (string, required) - phone number in 14 digits format
 - invoice: {} (object, optional)
-- invoice.invoiceNumber: 40002017 (string, required) - invoice number
-- invoice.invoiceDate: 20171231 (string, required) - invoice date format: YYYYMMDD
-- invoice.format: pdf (string, required) - invoice format or empty string
-- invoice.encoding: base64 (string, required) - invoice data encoding or empty string
-- invoice.data: JVBERi0xLjUNJabpz8QgDTkzNCAwIG9iag08PC9... (string, required) - invoice data or empty string
+    - invoiceNumber: 40002017 (string, required) - invoice number
+    - invoiceDate: 20171231 (string, required) - invoice date format: YYYYMMDD
+    - format: pdf (string, required) - invoice format or empty string
+    - encoding: base64 (string, required) - invoice data encoding or empty string
+    - data: JVBERi0xLjUNJabpz8QgDTkzNCAwIG9iag08PC9... (string, required) - invoice data or empty string
 
 - discount: {} (object, required) - if skladon should provide discount, it has to be discussed otherwise set 0 to value
-- discount.type: PER (string, required) - type of discount, PER = percentage
-- discount.value: 0 (integer, required) - value of discount
+    - type: PER (string, required) - type of discount, PER = percentage
+    - value: 0 (integer, required) - value of discount
 
 - paid: 1 (integer, required) - 1 = paid, 0 = cash on delivery
 
 - price: {} (object, required)
-
-- price.invoicePrice: {} (object, required)
-- price.invoicePrice.value: 50 (integer, required) - ivoice price value
-- price.invoicePrice.currency: USD (string, required) - invoice price currency 
-
-- price.shippingPrice: {} (object, required)
-- price.shippingPrice.value: 4.00 (number, required) -  shipping price
-- price.shippingPrice.currency: USD (string, required) - shipping price currency 
-
-- price.cashOnDelivery: {} (object, optional) - COD Cash On Delivery
-- price.cashOnDelivery.value: 4.00 (number, required) -  COD price, Cash On Delivery order price
-- price.cashOnDelivery.currency: USD (string, required) - COD price currency 
-- price.cashOnDelivery.refNumber: variabilny symbol (string, required) - reference number for bank
+    - invoicePrice: {} (object, required)
+        - value: 50 (integer, required) - ivoice price value
+        - currency: USD (string, required) - invoice price currency 
+    - shippingPrice: {} (object, required)
+        - value: 4.00 (number, required) -  shipping price
+        - currency: USD (string, required) - shipping price currency 
+    - cashOnDelivery: {} (object, optional) - COD Cash On Delivery
+        - value: 4.00 (number, required) -  COD price, Cash On Delivery order price
+        - currency: USD (string, required) - COD price currency 
+        - refNumber: variabilny symbol (string, required) - reference number for bank
 
 - shippingMethod: DEL (string, required) -  shipping method: DEL = Delivery, PER = Personally. Available = DEL, PER
 
 - shipper: {} (object, required)
-- shipper.name: UPS (string, required) - shipper name according table. Available = UPS, CP of GLS
-- shipper.serviceCode: UPSES (string, required) - shipper service code according table. Available = UPSES, CPDR, CPDRCOD, CPNP, CPNPCOD, RRCZ, RRCZCOD, RREU, RRWR, GLSCZ, GLSCZCOD, GLSEU, GLSEUCOD, TGCZ, TGCZCOD, TGEU or TGEUCOD
+    - name: UPS (string, required) - shipper name according table. Available = UPS, CP of GLS
+    - serviceCode: UPSES (string, required) - shipper service code according table. Available = UPSES, CPDR, CPDRCOD, CPNP, CPNPCOD, RRCZ, RRCZCOD, RREU, RRWR, GLSCZ, GLSCZCOD, GLSEU, GLSEUCOD, TGCZ, TGCZCOD, TGEU or TGEUCOD
 
-- products: {} (array, required)
-- product.productCode: 1 (string, requried) - The unique identifier, code of product
-- product.count: 1 (integer, required) - Count of same products
-- product.productPrice: 22 (number, required) - price of one certain product
-- product.productCurrency: USD (string, required) - product price currencyta
+- products: [] (array, required)
+    - productCode: 1 (string, requried) - The unique identifier, code of product
+    - count: 1 (integer, required) - Count of same products
+    - productPrice: 22 (number, required) - price of one certain product
+    - productCurrency: USD (string, required) - product price currencyta
 
 
 + Request (application/json)
