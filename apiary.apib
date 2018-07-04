@@ -97,14 +97,14 @@ Test API url: https://test-api.skladon.cz/v1/
 
 - price: {} (object, required)
     - invoicePrice: {} (object, required)
-        - value: 50 (integer, required) - ivoice price value
-        - currency: USD (string, required) - invoice price currency 
+        - value: 1100 (integer, required) - ivoice price value
+        - currency: CZK (string, required) - invoice price currency 
     - shippingPrice: {} (object, required)
-        - value: 4.00 (number, required) -  shipping price
-        - currency: USD (string, required) - shipping price currency 
+        - value: 100.00 (number, required) -  shipping price
+        - currency: CZK (string, required) - shipping price currency 
     - cashOnDelivery: {} (object, optional) - COD Cash On Delivery
-        - value: 4.00 (number, required) -  COD price, Cash On Delivery order price
-        - currency: USD (string, required) - COD price currency 
+        - value: 1100 (number, required) -  COD price, Cash On Delivery order price
+        - currency: CZK (string, required) - COD price currency 
         - refNumber: variabilny symbol (string, required) - reference number for bank
 
 - shippingMethod: DEL (string, required) -  shipping method: DEL = Delivery, PER = Personally. Available = DEL, PER
