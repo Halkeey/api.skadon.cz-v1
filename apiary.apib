@@ -417,41 +417,6 @@ Test API url: https://test-api.skladon.cz/v1/
             }
         }
         
-## Changes in order state changing Collection [/your-url/{orderID}]
-### List All in order state changing [GET]
-###### status code 200: OK
-###### status code 500: ERROR
-###### status code 400: ORDER-NUMBER DOES NOT EXIST
-
-+ Parameters
-    + orderID (number) - Order ID
-        
-+ Response 200 (application/json)
-
-        {
-            "status": {
-                "code": 200,
-                "text": "some-text"
-            }
-        }
-        
-+ Response 200 (application/json)
-
-        {
-            "status": {
-                "code": 500,
-                "text": "some-text"
-            }
-        }
-        
-+ Response 200 (application/json)
-
-        {
-            "status": {
-                "code": 400
-                "text": "some-text"
-            }
-        }
 
 ## Order Cancellation  [/order/order-cancellation/]
 ### Order Cancellation [POST]
