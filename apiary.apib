@@ -7,43 +7,9 @@ Skadon API
 Production API url: https://api.skladon.cz/v1/
 Test API url: https://test-api.skladon.cz/v1/
 
-
-## Address Validation Collection [/validation/address-validation]
-### List All Address Validation (only for UPS - USA addresses!) [POST]
-###### status code 200: valid
-###### status code 400: invalid
-
-+ Request (application/json)
-
-        {
-            "skladonAuth": {
-                "apiKey": "a4de2249-5dal-243v-8r99-623cc54b9616"
-            },
-            "city": "Cliffside Park", 
-            "stateCode":"NJ", 
-            "postalCode":"07010"
-        }
-
-+ Response 200 (application/json)
-
-        {
-            "status": {
-                "code": 200,
-                "text": "valid"
-            }
-        }
+IMPORTANT: Request - Create Order - with Czech Post carrier can take more than 30 seconds. Please set timeout properly on your http client
         
-+ Response 200 (application/json)
-
-        {
-            "status": {
-                "code": 400,
-                "text": "invalid"
-            }
-        }   
-        
-        
-## Create Order Collection [/order/create-order]
+## Create Order Collection [/order/create-order]c
 ### Create Order [POST]
 ###### status code 200: order successfully created
 ###### status code 401: order already exists
@@ -221,7 +187,7 @@ Test API url: https://test-api.skladon.cz/v1/
             },
             "response": {
                 "message": "order successfully created",
-                "invoiceNumber": "40002017"
+                "orderId": "123"
             }
         }
         
@@ -234,7 +200,7 @@ Test API url: https://test-api.skladon.cz/v1/
             },
             "response":{
                 "message": "Order already exists",
-                "invoiceNumber": "40002017"
+                "orderId": "123"
             }
         }
 
