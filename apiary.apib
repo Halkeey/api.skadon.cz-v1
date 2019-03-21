@@ -386,47 +386,6 @@ IMPORTANT: Request - Create Order - with Czech Post carrier can take more than 3
             }
         }
         
-
-## Order Cancellation (CURRENTLY NOT AVAILABLE!)  [/order/order-cancellation/]
-### Order Cancellation [POST]
-######  status code 200: order successfully cancellored
-######  status code 400: cannot cancel order, reasons: no order found, order was cancelled yet or order is on the way to client
-
-+ Request (application/json)
-
-        {
-            "skladonAuth": {
-                "apiKey": "a4de2249-5dal-243v-8r99-623cc54b9616"
-            },
-            "invoice": {
-                    "invoiceNumber":"40002017"
-            },
-        }
-
-+ Response 200 (application/json)
-
-        {
-            "status": {
-                "code": 200,
-                "text": "order successfully cancelled"
-            },
-            "invoice": {
-                    "invoiceNumber":"40002017"
-            }
-        }
-        
-+ Response 200 (application/json)
-
-        {
-            "status": {
-                "code": 400,
-                "text": "cannot cancel order, reasons: no order found, order has been cancelled or order is already packaged"
-            },
-            "invoice": {
-                    "invoiceNumber":"40002017"
-            }
-        }        
-        
 ## Product Availability  [/product/products-availability]
 ### Product Availability [POST]
 ######  status code 200: product is available, showen count of stored product
