@@ -399,7 +399,10 @@ IMPORTANT: Request - Create Order - with Czech Post carrier can take more than 3
             },
             "products": [
                 {
-                "productCode":"1
+                    "productCode":"1"
+                },
+                {
+                    "productCode":"10000001"
                 }
             ]
         
@@ -414,18 +417,26 @@ IMPORTANT: Request - Create Order - with Czech Post carrier can take more than 3
             },
             "products": [
                 {
-                    "productCode": "1",
-                    "count": 7   
-                }
+                    "status": "OK",
+                    "code": 200,
+                    "productCode": "1",
+                    "count": 0
+                },
+                {
+                    "status": "Not found",
+                    "code": 404,
+                    "productCode": "10000001",
+                    "count": null
+                },
             ]
         }
         
-+ Response 200 (application/json)
++ Response 500 (application/json)
 
         {
             "status": {
-                "text": "no products found",
-                "code": 300
+                "text": "server error",
+                "code": 200
             },
             "products": []
         }
