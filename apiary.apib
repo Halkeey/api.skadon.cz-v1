@@ -434,9 +434,7 @@ IMPORTANT: Request - Create Order - with Czech Post carrier can take more than 3
 + Response 500 (application/json)
 
         {
-            "status": {
-                "text": "server error",
-                "code": 200
-            },
-            "products": []
+            "statusCode":500,
+            "error":"Internal Server Error",
+            "message":"An internal server error occurred"
         }
