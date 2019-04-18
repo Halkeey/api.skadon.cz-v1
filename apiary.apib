@@ -80,8 +80,8 @@ IMPORTANT: Request - Create Order - with Czech Post carrier can take more than 3
 - shippingMethod: DEL (string, required) -  shipping method: DEL = Delivery, PER = Personally. Available = DEL, PER
 
 - shipper: {} (object, required)
-    - name: UPS (string, required) - shipper name according table. Available = UPS, CP of GLS
-    - serviceCode: UPSES (string, required) - shipper service code according table. Available = UPSES, CPDR, CPDRCOD, CPNP, CPNPCOD, RRCZ, RRCZCOD, RREU, RRWR, GLSCZ, GLSCZCOD, GLSEU, GLSEUCOD, TGCZ, TGCZCOD, TGEU or TGEUCOD
+    - name: UPS (string, required) - shipper name according table. Available = UPS, CP, GLS, Zasilkovna
+    - serviceCode: UPSES (string, required) - shipper service code according table. Available = UPSES, CPDR, CPDRCOD, CPNP, CPNPCOD, RRCZ, RRCZCOD, RREU, RRWR, GLSCZ, GLSCZCOD, GLSEU, GLSEUCOD, TGCZ, TGCZCOD, TGEU, TGEUCOD, PCKT
 
 - products: [] (array, required)
     - productCode: 1 (string, requried) - The unique identifier, code of product
