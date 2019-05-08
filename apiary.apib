@@ -191,6 +191,9 @@ IMPORTANT: Request - Create Order - with Czech Post carrier can take more than 3
             "response": {
                 "message": "order successfully created",
                 "orderId": "123"
+                "ID": 25887,
+                "trackingNumber": "DR7855984784L"
+                "orderStatus": "received"
             }
         }
         
@@ -332,15 +335,17 @@ IMPORTANT: Request - Create Order - with Czech Post carrier can take more than 3
 ###### status code 306: refunded
 ###### status code 307: canceled
 
+'''
 
+'''
 + Request (application/json)
 
         {
             "skladonAuth": {
                 "apiKey": "a4de2249-5dal-243v-8r99-623cc54b9616"
             },
-            "invoice": {
-                    "invoiceNumber":"40002017"
+            "order": {
+                "orderId": 255
             }
         }
 
@@ -622,7 +627,7 @@ For example if I want set different shipper see request.
         }
 
 ## Create product [/product/create]
-### Create product [PUT]
+### Create product [POST]
 
 + Request (application/json)
 
@@ -645,6 +650,7 @@ For example if I want set different shipper see request.
                       "UNIT_WEIGHT":null,
                       "UPC":null,
                       "EAN":null,
+                      "EXP_METHOD":"FIFO",
                       "ROP":null,
                       "MPN":null,
                       "ISBN":null,
@@ -694,4 +700,101 @@ For example if I want set different shipper see request.
            "ID":516,
            "STOCK_MU_CODE":"pcs",
            "PHOTO_HASH":null
+        }
+        
+## Create receiving [/receiving/create]
+### Create receiving [POST]
+
++ Request (application/json)
+
+        {
+            "skladonAuth":{
+                    "apiKey":"a4de2249-5dal-243v-8r99-623cc54b9616"
+            },
+            "object":{
+               "receiving":{
+                  "ASN":"",
+                  "SUPPLIER":"",
+                  "ESTIMATED_DELIVERY":"2019-05-06",
+                  "HANDLING_UNITS":"box",
+                  "UNITS_AMOUNT":"1",
+                  "TRACKING_NUMBER": "Tracking number",
+                  "DESCRIPTION": "Description",
+                  "PRODUCTS":[
+                     {
+                        "PRODUCT_CODE":"SKU1",
+                        "QUANTITY":"1000",
+                        "LOT":"10012",
+                        "EXPIRATION_DATE":""
+                     }
+                  ]
+               }
+            }
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "skladonAuth":{
+            
+            },
+            "object":{
+               "ASN":"ASN-5",
+               "SUPPLIER":null,
+               "ESTIMATED_DELIVERY":"2019-05-06T00:00:00.000Z",
+               "HANDLING_UNITS":"box",
+               "UNITS_AMOUNT":1,
+               "DESCRIPTION":null,
+               "TRACKING_NUMBER":null,
+               "ESHOP_KEY":"a4de2249-5dal-243v-8r99-623cc54b9616",
+               "CREATOR_ID":113,
+               "PRODUCTS":[
+                  {
+                     "PRODUCT_ID":516,
+                     "QUANTITY":1000,
+                     "LOT":"10012",
+                     "EXPIRATION_DATE":null,
+                     "PRODUCT":{
+                        "ID":516,
+                        "SKU":"SKU1",
+                        "OWNER_ESHOP_KEY":"a4de2249-5dal-243v-8r99-623cc54b9616",
+                        "ALIAS":null,
+                        "NAME":"Product name 1",
+                        "DESCRIPTION":"Description 1",
+                        "PRICE":null,
+                        "UNIT_PRICE":null,
+                        "UNIT_WEIGHT":null,
+                        "WIDTH":null,
+                        "HEIGHT":null,
+                        "LENGTH":null,
+                        "WEIGHT":null,
+                        "HS_CODE":null,
+                        "UPC":null,
+                        "EAN":null,
+                        "ROP":0,
+                        "STOCK_MU_CODE":"pcs",
+                        "EXP_METHOD":"FIFO",
+                        "DCIX_IMPORT":"2019-05-06T14:00:08.000Z",
+                        "MPN":null,
+                        "ISBN":null,
+                        "NOTE":null,
+                        "ACTIVE":1,
+                        "PACKING_TYPE":"slapalabel",
+                        "INSERT_TO_PRODUCT_ID":null,
+                        "PACKAGING_MATERIAL_SLOTS":null,
+                        "PRODUCT_TYPE":"item",
+                        "INSERT_TYPE":null,
+                        "CREATED_AT":"2019-05-06T14:00:08.000Z",
+                        "UPDATED_AT":"2019-05-06T14:00:08.000Z",
+                        "GUID":null
+                     },
+                     "RECEIVING_ID":5,
+                     "RECEIVINGS_PRODUCTS_ID":181
+                  }
+               ],
+               "ID":5,
+               "CREATED_AT":"2019-05-06T14:26:55.000Z",
+               "DCIX_EXPORT":"2019-05-06T14:26:55.000Z",
+               "STATUS":"awaiting"
+            }
         }
