@@ -451,10 +451,11 @@ Test API url: https://test-api.skladon.cz/v1/
 ### Get products [GET]
 ##### Returns list of all products 
 
-+ Request (application/json)
++ Request
 
     + Headers
-        eshopkey: "a4de2249-5dal-243v-8r99-623cc54b9616"
+
+            Api-Key: "a4de2249-5dal-243v-8r99-623cc54b9616"
 
 + Response 200 (application/json)
 
@@ -518,7 +519,9 @@ Test API url: https://test-api.skladon.cz/v1/
             "message": "Unauthorized"
         }        
         
+
 + Response 500 (application/json)
+
         {
             "statusCode": 500,
             "error": "Internal server error",
@@ -529,61 +532,67 @@ Test API url: https://test-api.skladon.cz/v1/
 ### Update/create products [PUT]
 ##### Creates or updates products given in request payload products property
 
++ Request
+
+    + Headers
+
+            Api-Key: "a4de2249-5dal-243v-8r99-623cc54b9616"
+
+
 + Request (application/json)
 
-+ Headers
-        eshopkey: "a4de2249-5dal-243v-8r99-623cc54b9616"
+        {
+            "products":     
+                [
+                    {
+                        "SKU": "ABC",
+                        "NAME": "product name",
+                        "DESCRIPTION": "product ABC description",                    
+                        "PRICE": 12,
+                        "UNIT_PRICE": "CZK",                    
+                        "WIDTH": 1.00000,
+                        "HEIGHT": 1.00000,
+                        "LENGTH": 1.00000,
+                        "WEIGHT": 1.00000,
+                        "UPC": null,
+                        "EAN": "123456789",
+                        "ROP": 0,
+                        "STOCK_MU_CODE": "pcs",
+                        "EXP_METHOD": "FEFO",
+                        "MPN": null,
+                        "ISBN": null,
+                        "NOTE": null,
+                        "ACTIVE": 1,
+                        "PACKING_TYPE": "slapalabel",
+                        "PRODUCT_TYPE": "finalProduct",
+                    },
+                    {
+                        "SKU": "DEF",
+                        "NAME": "product name",
+                        "DESCRIPTION": "product DEF description",
+                        "PRICE": 10,
+                        "UNIT_PRICE": "CZK",
+                        "WIDTH": 1.00000,
+                        "HEIGHT": 1.00000,
+                        "LENGTH": 1.00000,
+                        "WEIGHT": 1.00000,
+                        "HS_CODE": null,
+                        "UPC": null,
+                        "EAN": "123456789",
+                        "ROP": 0,
+                        "STOCK_MU_CODE": "pcs",
+                        "EXP_METHOD": "FEFO",
+                        "MPN": null,
+                        "ISBN": null,
+                        "NOTE": null,
+                        "ACTIVE": 1,
+                        "PACKING_TYPE": "slapalabel",
+                        "PRODUCT_TYPE": "finalProduct",
+                    },
+                ]
+        }
+        
 
-+ Body
-    {
-        "products":     
-            [
-                {
-                    "SKU": "ABC",
-                    "NAME": "product name",
-                    "DESCRIPTION": "product ABC description",                    "PRICE": 12,
-                    "UNIT_PRICE": "CZK",                    
-                    "WIDTH": 1.00000,
-                    "HEIGHT": 1.00000,
-                    "LENGTH": 1.00000,
-                    "WEIGHT": 1.00000,
-                    "UPC": null,
-                    "EAN": "123456789",
-                    "ROP": 0,
-                    "STOCK_MU_CODE": "pcs",
-                    "EXP_METHOD": "FEFO",
-                    "MPN": null,
-                    "ISBN": null,
-                    "NOTE": null,
-                    "ACTIVE": 1,
-                    "PACKING_TYPE": "slapalabel",
-                    "PRODUCT_TYPE": "finalProduct",
-                },
-                {
-                    "SKU": "DEF",
-                    "NAME": "product name",
-                    "DESCRIPTION": "product DEF description",
-                    "PRICE": 10,
-                    "UNIT_PRICE": "CZK",
-                    "WIDTH": 1.00000,
-                    "HEIGHT": 1.00000,
-                    "LENGTH": 1.00000,
-                    "WEIGHT": 1.00000,
-                    "HS_CODE": null,
-                    "UPC": null,
-                    "EAN": "123456789",
-                    "ROP": 0,
-                    "STOCK_MU_CODE": "pcs",
-                    "EXP_METHOD": "FEFO",
-                    "MPN": null,
-                    "ISBN": null,
-                    "NOTE": null,
-                    "ACTIVE": 1,
-                    "PACKING_TYPE": "slapalabel",
-                    "PRODUCT_TYPE": "finalProduct",
-                },
-            ]
-    }
     
     
 
@@ -609,12 +618,14 @@ Test API url: https://test-api.skladon.cz/v1/
 
         {
             "statusCode": 401,
-    "error": "Unauthorized",
-    "message": "Unauthorized"
+            "error": "Unauthorized",
+            "message": "Unauthorized"
         }        
         
 + Response 500 (application/json)
 
-        "statusCode": 500,
-    "error": "Internal server error",
-    "message": "Internal server error"
+        {
+            "statusCode": 500,
+            "error": "Internal server error",
+            "message": "Internal server error"
+        }
