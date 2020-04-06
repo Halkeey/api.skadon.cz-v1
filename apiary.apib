@@ -530,7 +530,24 @@ Test API url: https://test-api.skladon.cz/v1/
         
         
 ### Update/create products [PUT]
-##### Creates or updates products given in request payload products property
+##### Creates or updates products given in request
+######  To disable product use ACTIVE: 0
+- SKU: ABC (string, required) - The unique products identifier
+- NAME: "product name" (string, required) - Product Name
+- DESCRIPTION: "product ABC description" (string, optional) - Product description
+- PRICE: 12 (string, optional) - cost of product.
+- UNIT_PRICE: CZK (string, optional) - ISO code for currency USD, GBP, CZK etc.            
+- WIDTH: 1.00000 (integer, optional) - Product width
+- HEIGHT: 1.00000 (integer, optional) - Product height
+- LENGTH: 1.00000 (integer, optional) - Product length
+- WEIGHT: 1.00000 (integer, optional) - Product weight
+- EAN: "123456789" (string, optional) - product EAN. If your product has ean, please use it
+- ROP: 0, (integer, optional) - Products re-order point for notifiaction
+- STOCK_MU_CODE: "pcs" (string, required) - "pcs" pieces. Use pcs as default
+- EXP_METHOD: "FEFO" (string, required) - FIFO = First in firt out, FEFO = First expired first out. Default is FIFO. IF your product has expiration date use FEFO.
+- ACTIVE: 1 (integer, required) - 1 = active product, 0 = inactive
+- PACKING_TYPE: "pickandpack" (string, required) - Use 'pickandpack' as default
+- PRODUCT_TYPE: "finalProduct" (string, required) -  'semiProduct' = this is part of final products for example: flyer or of final Product consists of more products, 'finalProduct' = prodcut which is ready to be shipped
 
 + Request
 
@@ -547,7 +564,7 @@ Test API url: https://test-api.skladon.cz/v1/
                     {
                         "SKU": "ABC",
                         "NAME": "product name",
-                        "DESCRIPTION": "product ABC description",                    
+                        "DESCRIPTION": "product ABC description",
                         "PRICE": 12,
                         "UNIT_PRICE": "CZK",                    
                         "WIDTH": 1.00000,
