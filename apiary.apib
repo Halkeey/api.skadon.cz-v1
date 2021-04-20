@@ -19,6 +19,7 @@ Test API url: https://test-api.skladon.cz/v1/
 ###### Object properties: 
 - orderId: 255 (number, required) - The unique identifier for the order
 - addressId: 175 (number, optional) - address ID of Zasilkovna pickup point
+- orderType: "b2c" (string, optional) - Order type b2c or b2b
 - message: "Extra stickers ..." (string, required) - Order message for stock-keeper or just left empty string
 - shipTo: {} (object, required)
     - recipient: {} (object, required)
@@ -100,6 +101,7 @@ Test API url: https://test-api.skladon.cz/v1/
             "order":{
                 "orderId": "255",
                 "addressId": 175,
+                "orderType": "b2c",
                 "message": "message text",
                 "shipTo":{
                     "recipient": {
