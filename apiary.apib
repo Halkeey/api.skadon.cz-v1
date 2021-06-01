@@ -12,7 +12,7 @@ Test API url: https://test-api.skladon.cz/v1/
 ## Create Order Collection [/order/create-order]
 ### Create Order [POST]
 ###### status code 200: order successfully created
-###### status code 401: order already exists
+###### status code 409: order already exists
 ###### status code 402: number of products is less then you need or you don't have any of them stored
 ###### Order is validated. 
 
@@ -206,7 +206,7 @@ Test API url: https://test-api.skladon.cz/v1/
 
         {
             "status": {
-                "code": 401,
+                "code": 409,
                 "text": "error"
             },
             "response":{
