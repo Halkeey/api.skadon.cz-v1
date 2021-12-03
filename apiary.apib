@@ -328,6 +328,258 @@ Test API url: https://api.skladon.net/v1/
             }
         }
         
+## Update Order Collection [/v1/order/update-order]
+### Update Order [PUT]
+
++ Request (application/json)
+
+        {
+            "skladonAuth": {
+                "apiKey": "string"
+            },
+            "order": {
+                "orderId": "string",
+                "printFiles": 0,
+                "addressId": 0,
+                "message": "string",
+                "status": "suspended",
+                "orderType": "b2c",
+                "shipTo": {
+                    "recipient": {
+                        "fullName": "string",
+                        "attentionName": "string",
+                        "address": {
+                            "street": "string",
+                            "additionalInformation": "string",
+                            "additionalInformation2": "string"
+                        },
+                        "city": "string",
+                        "countryCode": "string",
+                        "provinceCode": "string",
+                        "postCode": "string",
+                        "email": "string",
+                        "companyName": "string",
+                        "companyId": "string",
+                        "taxId": "string",
+                        "phone": "string"
+                    },
+                    "billing": {
+                        "fullName": "string",
+                        "attentionName": "string",
+                        "street": "string",
+                        "streetAdditionalInformation": "string",
+                        "streetAdditionalInformation2": "string",
+                        "city": "string",
+                        "countryCode": "string",
+                        "provinceCode": "string",
+                        "postCode": "string",
+                        "email": "string",
+                        "companyName": "string",
+                        "companyId": "string",
+                        "taxId": "string",
+                        "phone": "string"
+                    }
+                },
+                "invoice": {
+                    "invoiceNumber": "string",
+                    "invoiceDate": "string",
+                    "format": "string",
+                    "encoding": "string",
+                    "data": "string"
+                },
+                "discount": {
+                    "type": "string",
+                    "value": 0
+                },
+                "paid": 0,
+                "price": {
+                    "invoicePrice": {
+                        "value": 0,
+                        "currency": "string"
+                    },
+                    "shippingPrice": {
+                        "value": 0,
+                        "currency": "string"
+                    },
+                    "cashOnDelivery": {
+                        "value": 0,
+                        "currency": "string",
+                        "refNumber": "string"
+                    }
+                },
+                "shippingMethod": "string",
+                "shipper": {
+                    "name": "string",
+                    "serviceCode": "string"
+                },
+                "products": [
+                    {
+                        "productCode": "string",
+                        "count": 0,
+                        "productPrice": 0,
+                        "productCurrency": "string"
+                    }
+                ]
+            }
+        }
+
++ Response 200 (application/json)
+
+        {
+            "ID": 0,
+            "ESHOP_ORDER_ID": "string",
+            "INVOICE_NUMBER": "string",
+            "INVOICE_DATE": "string",
+            "PARTNER_ORDER_ID": "string",
+            "RECIPIENT_NAME": "string",
+            "RECIPIENT_ATTENTION_NAME": "string",
+            "RECIPIENT_EMAIL": "string",
+            "RECIPIENT_PHONE": "string",
+            "RECIPIENT_COMPANY_NAME": "string",
+            "RECIPIENT_COMPANY_ID": "string",
+            "RECIPIENT_TAX_ID": "string",
+            "RECIPIENT_STREET": "string",
+            "RECIPIENT_ADDRESS_ADDITIONAL_INFO": "string",
+            "RECIPIENT_ADDRESS_ADDITIONAL_INFO_2": "string",
+            "RECIPIENT_CITY": "string",
+            "RECIPIENT_STATE": "string",
+            "RECIPIENT_PROVINCE_CODE": "string",
+            "RECIPIENT_POST_CODE": "string",
+            "BILLING_NAME": "string",
+            "BILLING_ATTENTION_NAME": "string",
+            "BILLING_STREET": "string",
+            "BILLING_ADDRESS_ADDITIONAL_INFO": "string",
+            "BILLING_ADDRESS_ADDITIONAL_INFO_2": "string",
+            "BILLING_CITY": "string",
+            "BILLING_STATE": "string",
+            "BILLING_PROVINCE_CODE": "string",
+            "BILLING_POST_CODE": "string",
+            "BILLING_EMAIL": "string",
+            "BILLING_COMPANY_NAME": "string",
+            "BILLING_COMPANY_ID": "string",
+            "BILLING_TAX_ID": "string",
+            "BILLING_PHONE": "string",
+            "SHIPPER": "string",
+            "ADDRESS_ID": 0,
+            "MESSAGE": "string",
+            "PAID": 0,
+            "PAYMENT_METHOD": "string",
+            "PRICE": 0,
+            "CURRENCY": "string",
+            "SHIPPING_PRICE": 0,
+            "SHIPPING_CURRENCY": "string",
+            "COD_PRICE": 0,
+            "COD_CURRENCY": "string",
+            "COD_REF_NUMBER": "string",
+            "METHOD": "DEL",
+            "NOTE": "string",
+            "SHIPPER_SERVICE_CODE": "string",
+            "TRANSPORT_PAID_BY_SKLADON": 0,
+            "ORDER_BOX_COUNT": 0,
+            "ORDER_PRODUCTS": [
+                {
+                    "ORDERS_PRODUCTS_ID": 0,
+                    "PRODUCT_ID": 0,
+                    "ORDER_ID": 0,
+                    "PRODUCT_CURRENCY": "string",
+                    "PRODUCT_PRICE": 0,
+                    "COUNT": 0,
+                    "LOT": "string",
+                    "CONFIRMED": 0,
+                    "MISSING_COUNT": 0,
+                    "LINE_STATE": "string",
+                    "PRODUCT": {
+                        "ID": 0,
+                        "SKU": "string",
+                        "NAME": "string",
+                        "EAN": "string"
+                    }
+                }
+            ],
+            "FILES": [
+                {
+                    "type": "string",
+                    "data": "string",
+                    "fileName": "string",
+                    "fileType": "string",
+                    "fileSize": "string"
+                }
+            ],
+            "PRINT_FILES": 0,
+            "ALLOW_EXPEDITION": 0,
+            "MARKETPLACE": "string",
+            "PRIORITY": 0,
+            "STATUS": "string",
+            "TRACKING_NUMBER": "string",
+            "PROVIDER": {
+                "VIRTUAL_ESHOP_PARENT": 0,
+                "COMPANY_NAME": "string",
+                "WEBSITE": "string",
+                "PROVIDER_STREET": "string",
+                "PROVIDER_CITY": "string",
+                "PROVIDER_STATE": "string",
+                "PROVIDER_POST_CODE": "string",
+                "PROVIDER_COMPANY_ID": 0,
+                "PROVIDER_TAX_ID": "string",
+                "PROVIDER_BILLING_STREET": "string",
+                "PROVIDER_BILLING_CITY": "string",
+                "PROVIDER_BILLING_STATE": "string",
+                "PROVIDER_BILLING_POST_CODE": 0,
+                "PROVIDER_COMPANY_PHONE": 0,
+                "PROVIDER_EMAIL": "string",
+                "ACTIVE": 0,
+                "BANK_ACCOUNT_NO": "string",
+                "LOGO": "string",
+                "SHOPTET": 0,
+                "INITIAL_SHOPTET_IMPORT_PRODUCT": "string",
+                "SHOPTET_STOCK_ID": 0,
+                "DCIX_PROVIDER_ID": 0,
+                "DCIX_SKU_IMPORT": true,
+                "EXTERNAL_DCIX_IMPORT": true,
+                "UPDATE_ALL_STOCK": true,
+                "IMPORT_FROM_STATUS": true,
+                "SECONDARY": true,
+                "SERVICE_CODES": [
+                    {
+                        "SHIPPER_CODE": "string",
+                        "VALUE": "string"
+                    }
+                ],
+                "PROVIDER_EMAIL_TEMPLATES": [
+                  {
+                    "ID": 0,
+                    "TYPE": "string",
+                    "EMAIL_TEMPLATE": "string",
+                    "LANG": "string",
+                    "ACTIVE": 0
+                  }
+                ],
+                "DEFAULT_PRINT_FILES": 0,
+                "DEFAULT_ALLOW_EXPEDITION": 0,
+                "SEND_RECIPIENT_EMAIL_B2B_ON_THE_WAY": 0,
+                "SEND_RECIPIENT_EMAIL_B2C_ON_THE_WAY": 0,
+                "ID": 0,
+                "PUBLIC_ID": "string",
+                "ESHOP_KEY": "string",
+                "SHOPTET_STOCK_RATIO": 0,
+                "SYSTEM": "string",
+                "STOCK_ID": "string"
+            },
+            "CHANGELOG": {
+                "orderId": 0,
+                "created_at": "2021-12-03",
+                "updates": [
+                    {         
+                        "created_at": "2021-12-03",
+                        "data": "string",
+                        "user": "string",
+                        "message": "string",
+                        "type": "string"
+                    }
+                ]
+            }
+        }
+        
         
 ## Order State Collection [/order/order-state]
 ### Order State [POST]
@@ -797,4 +1049,11 @@ Test API url: https://api.skladon.net/v1/
                     ]
                 }
             ]
+        }
+        
++ Response 401 (application/json)
+
+        {
+            "statusCode": 0,
+            "message": "string"
         }
