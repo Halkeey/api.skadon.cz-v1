@@ -918,7 +918,13 @@ Test API url: https://api.skladon.net/v1/
 ### Create Receiving [PUT]
 ##### Update or create receiving given in request payload
 
-+ Request 200 (application/json)
++ Request
+
+    + Headers
+
+            Api-Key: "a4de2249-5dal-243v-8r99-623cc54b9616"
+
++ Request (application/json)
 
         {
             "receiving": {
@@ -1013,6 +1019,13 @@ Test API url: https://api.skladon.net/v1/
         
 ### Get Receivings [GET]
 ##### Get list of all e-shop's receivings        
+        
++ Request
+    
+    + Headers
+
+            Api-Key: "a4de2249-5dal-243v-8r99-623cc54b9616"
+        
         
 + Response 200 (application/json)
 
