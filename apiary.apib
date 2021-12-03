@@ -1,12 +1,12 @@
 FORMAT: 1A
-HOST: https://api.skladon.cz/v1/
+HOST: https://api.skladon.net/v1/
 
 # skladon
 
 ```
 Skadon API
 Production API url: https://api.skladon.cz/v1/
-Test API url: https://test-api.skladon.cz/v1/
+Test API url: https://api.skladon.net/v1/
 ```
 
 ## Create Order Collection [/order/create-order]
@@ -650,4 +650,102 @@ Test API url: https://test-api.skladon.cz/v1/
             "statusCode": 500,
             "error": "Internal server error",
             "message": "Internal server error"
+        }
+        
+
+
+## Create Receiving Collection [/receiving]
+### Create Receiving [PUT]
+##### Update or create receiving given in request payload
+
++ Request 200 (application/json)
+
+        {
+            "receiving": {
+                "ASN": "string",
+                "DESCRIPTION": "string",
+                "TRACKING_NUMBER": "string",
+                "SUPPLIER": "string",
+                "ESTIMATED_DELIVERY": "2021-12-03",
+                "HANDLING_UNITS": "container",
+                "CARRIER_INFO": "string",
+                "DELIVERY_NOTE_NUMBER": "string",
+                "DELIVERY_TYPE": "courier",
+                "URGENT": "ok",
+                "DUTY": 0,
+                "UNITS_AMOUNT": 0,
+                "DRIVER_COMPANY": "string",
+                "DRIVER_TRAILER_LICENSE_PLATE": "string",
+                "DRIVER_NAME": "string",
+                "DRIVER_PHONE": "string",
+                "DRIVER_DISPATCHER_CONTACT": "string",
+                "PRODUCTS": [
+                    {
+                        "NAME": "string",
+                        "SKU": "string",
+                        "QUANTITY": 0,
+                        "LOT": "string",
+                        "EXPIRATION_DATE": "2021-12-03",
+                        "RECEIVED": 0,
+                        "LINE_STATE": "string"
+                    }
+                ],
+                "PACKAGINGS": [
+                    {
+                        "PACKAGING_TYPE": "non_returnable_pallet",
+                        "PALLET": "pallet_100x120_ippc",
+                        "QUANTITY": 0
+                    }
+                ]
+            }
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "statusCode": 200,
+            "message": "OK",
+                "receiving": {
+                    "DESCRIPTION": "string",
+                    "TRACKING_NUMBER": "string",
+                    "SUPPLIER": "string",
+                    "ESTIMATED_DELIVERY": "2021-12-03",
+                    "HANDLING_UNITS": "container",
+                    "CARRIER_INFO": "string",
+                    "DELIVERY_NOTE_NUMBER": "string",
+                    "DELIVERY_TYPE": "courier",
+                    "URGENT": "ok",
+                    "DUTY": 0,
+                    "UNITS_AMOUNT": 0,
+                    "DRIVER_COMPANY": "string",
+                    "DRIVER_TRAILER_LICENSE_PLATE": "string",
+                    "DRIVER_NAME": "string",
+                    "DRIVER_PHONE": "string",
+                    "DRIVER_DISPATCHER_CONTACT": "string",
+                    "PRODUCTS": [
+                        {
+                            "NAME": "string",
+                            "SKU": "string",
+                            "QUANTITY": 0,
+                            "LOT": "string",
+                            "EXPIRATION_DATE": "2021-12-03",
+                            "RECEIVED": 0,
+                            "LINE_STATE": "string"
+                        }
+                    ],
+                    "PACKAGINGS": [
+                        {
+                            "PACKAGING_TYPE": "non_returnable_pallet",
+                            "PALLET": "pallet_100x120_ippc",
+                            "QUANTITY": 0
+                        }
+                    ]
+                }
+        }
+        
++ Response 401 (application/json)
+
+        {
+            "statusCode": 0,
+            "message": "string"
         }
