@@ -918,6 +918,13 @@ Test API url: https://api.skladon.net/v1/
 ### Create Receiving [PUT]
 ##### Update or create receiving given in request payload
 
+- HANDLING_UNITS: container (string, required) - [ container, container_pallets, box_loose, box_on_pallete, product_loose ]
+- DELIVERY_TYPE: courier (string, required) - [ courier, transportCompany, truckingCompany, containter ]
+- URGENT: ok (string, required) - [ ok, afterUrgent, recievedWithoutAsn ]
+- PACKAGINGS: {} (object, required)
+    - PACKAGING_TYPE: non_returnable_pallet (string, required) - [ non_returnable_pallet, returnable_pallet_wood, returnable_pallet_not_wood ]
+    - PALLET: pallet_100x120_ippc (string, required) - [ pallet_100x120_ippc, pallet_100x120_standard, pallet_80x120_eur_a, pallet_80x120_eur_b, pallet_80x120_standard, pallet_60x80_ippc, pallet_60x80_standard, unspecified ]
+
 + Request
 
     + Headers
@@ -928,7 +935,6 @@ Test API url: https://api.skladon.net/v1/
 
         {
             "receiving": {
-                "ASN": "string",
                 "DESCRIPTION": "string",
                 "TRACKING_NUMBER": "string",
                 "SUPPLIER": "string",
@@ -952,7 +958,6 @@ Test API url: https://api.skladon.net/v1/
                         "QUANTITY": 0,
                         "LOT": "string",
                         "EXPIRATION_DATE": "2021-12-03",
-                        "RECEIVED": 0,
                         "LINE_STATE": "string"
                     }
                 ],
