@@ -654,7 +654,7 @@ Test API url: https://api.skladon.net/v1/
         
 
 
-## Create Receiving Collection [/receiving]
+## Receiving Collection [/receiving]
 ### Create Receiving [PUT]
 ##### Update or create receiving given in request payload
 
@@ -748,4 +748,53 @@ Test API url: https://api.skladon.net/v1/
         {
             "statusCode": 0,
             "message": "string"
+        }
+        
+        
+### Get Receivings [GET]
+##### Get list of all e-shop's receivings        
+        
++ Response 200 (application/json)
+
+        {
+            "statusCode": 200,
+            "message": "OK",
+            "receivings": [
+                {
+                    "DESCRIPTION": "string",
+                    "TRACKING_NUMBER": "string",
+                    "SUPPLIER": "string",
+                    "ESTIMATED_DELIVERY": "2021-12-03",
+                    "HANDLING_UNITS": "container",
+                    "CARRIER_INFO": "string",
+                    "DELIVERY_NOTE_NUMBER": "string",
+                    "DELIVERY_TYPE": "courier",
+                    "URGENT": "ok",
+                    "DUTY": 0,
+                    "UNITS_AMOUNT": 0,
+                    "DRIVER_COMPANY": "string",
+                    "DRIVER_TRAILER_LICENSE_PLATE": "string",
+                    "DRIVER_NAME": "string",
+                    "DRIVER_PHONE": "string",
+                    "DRIVER_DISPATCHER_CONTACT": "string",
+                    "PRODUCTS": [
+                        {
+                            "NAME": "string",
+                            "SKU": "string",
+                            "QUANTITY": 0,
+                            "LOT": "string",
+                            "EXPIRATION_DATE": "2021-12-03",
+                            "RECEIVED": 0,
+                            "LINE_STATE": "string"
+                        }
+                    ],
+                    "PACKAGINGS": [
+                        {
+                            "PACKAGING_TYPE": "non_returnable_pallet",
+                            "PALLET": "pallet_100x120_ippc",
+                            "QUANTITY": 0
+                        }
+                    ]
+                }
+            ]
         }
