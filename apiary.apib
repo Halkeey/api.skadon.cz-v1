@@ -657,7 +657,7 @@ Test API url: https://api.skladon.net/v1/
         }
         
 ## Product Availability  [/product/products-availability]
-### Product Availability [POST]
+### Product Availability by given SKUS [POST]
 ######  status code 200: product is available, showen count of stored product
 ######  status code 404: product not found
 
@@ -672,10 +672,13 @@ Test API url: https://api.skladon.net/v1/
         {
             "products": [
                 {
-                    "SKU":"1"
+                    "SKU":"1001"
                 },
                 {
                     "SKU":"10000001"
+                },
+                {
+                    "SKU":"10000002"
                 }
             ]
         
@@ -685,21 +688,26 @@ Test API url: https://api.skladon.net/v1/
 
         {
             "status": {
-                "text": "count of products",
+                "message": "OK",
                 "code": 200
             },
             "products": [
                 {
-                    "status": "OK",
-                    "code": 200,
-                    "productCode": "1",
-                    "count": 0
+                  "SKU": "1001",
+                  "AVAILABLE": 6,
+                  "ALL": 105,
+                  "AWAITING": 500,
+                  "ON_HOLD_QUANTITY": 0,
+                  "ALLOCATED": 91,
+                  "ON_EXPEDITION": 6
                 },
                 {
-                    "status": "Not found",
-                    "code": 404,
-                    "productCode": "10000001",
-                    "count": null
+                    "error": "Cannot find product with given SKU",
+                    "SKU": "10000001",
+                },
+                {
+                    "error": "Product with given SKU does not exist in WMS",
+                    "SKU": "10000002",
                 },
             ]
         }
@@ -711,6 +719,45 @@ Test API url: https://api.skladon.net/v1/
             "error":"Internal Server Error",
             "message":"An internal server error occurred"
         }
+        
+### Product Availability for all provider's products [GET]
+######  status code 200: product is available, showen count of stored product
+######  status code 404: product not found
+
++ Request
+
+    + Headers
+
+            Api-Key: "a4de2249-5dal-243v-8r99-623cc54b9616"
+
++ Response 200 (application/json)
+
+        {
+            "status": {
+                "message": "OK",
+                "code": 200
+            },
+            "products": [
+                {
+                  "SKU": "1001",
+                  "AVAILABLE": 6,
+                  "ALL": 105,
+                  "AWAITING": 500,
+                  "ON_HOLD_QUANTITY": 0,
+                  "ALLOCATED": 91,
+                  "ON_EXPEDITION": 6
+                }
+            ]
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "statusCode":500,
+            "error":"Internal Server Error",
+            "message":"An internal server error occurred"
+        }    
+        
         
 ## Products [/product]
 ### Get products [GET]
@@ -995,7 +1042,6 @@ Test API url: https://api.skladon.net/v1/
                     "DRIVER_DISPATCHER_CONTACT": "string",
                     "PRODUCTS": [
                         {
-                            "NAME": "string",
                             "SKU": "string",
                             "QUANTITY": 0,
                             "LOT": "string",
