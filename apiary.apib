@@ -18,7 +18,7 @@ Test API url: https://api.skladon.net/v1/
 
 ###### Object properties: 
 - orderId: 255 (number, required) - The unique identifier for the order
-- addressId: 175 (number, optional) - address ID of Zasilkovna pickup point
+- addressId: 175 (number, optional) - address ID of Zasilkovna pickup point or CP balikovna pick up point
 - orderType: "b2c" (string, optional) - Order type b2c or b2b
 - message: "Extra stickers ..." (string, required) - Order message for stock-keeper or just left empty string
 - shipTo: {} (object, required)
@@ -89,6 +89,7 @@ Test API url: https://api.skladon.net/v1/
     - count: 1 (integer, required) - Count of same products
     - productPrice: 22 (number, required) - selling price of product
     - productCurrency: USD (string, required) - product price currency
+    - customsProductType: saleOfGoods (string, optional) - customs product type ('gift', 'documents', 'saleOfGoods', 'commercialSample', 'returnedGoods')
 
 
 + Request (application/json)
@@ -177,7 +178,8 @@ Test API url: https://api.skladon.net/v1/
                         "productCode":"1",
                         "count":1,
                         "productPrice":"22",
-                        "productCurrency":"USD"
+                        "productCurrency":"USD",
+                        "customsProductType": "saleOfGoods"
                     }
 
                 ]
@@ -417,7 +419,8 @@ Test API url: https://api.skladon.net/v1/
                         "productCode": "string",
                         "count": 0,
                         "productPrice": 0,
-                        "productCurrency": "string"
+                        "productCurrency": "string",
+                        "customsProductType": "saleOfGoods"
                     }
                 ]
             }
@@ -488,6 +491,7 @@ Test API url: https://api.skladon.net/v1/
                     "CONFIRMED": 0,
                     "MISSING_COUNT": 0,
                     "LINE_STATE": "string",
+                    "CUSTOMS_PRODUCT_TYPE": "string",
                     "PRODUCT": {
                         "ID": 0,
                         "SKU": "string",
